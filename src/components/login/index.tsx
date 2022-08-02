@@ -13,11 +13,11 @@ export const Login: React.FC = () => {
           <div className="login__inputs">
             <label>
               <p>Email:</p>
-              <input type="text" />
+              <input type="text" placeholder="Введите вашу почту..." />
             </label>
             <label>
               <p>Password:</p>
-              <input type="password" />
+              <input type="password" placeholder="Введите ваш пароль..." />
             </label>
           </div>
           <div className="login__buttons">
@@ -31,7 +31,7 @@ export const Login: React.FC = () => {
           </div>
         </form>
         <div className="login__links">
-          <a href="">Нету аккаунта</a>
+          <a href="">Регистрация</a>
           <a href="">О нас</a>
         </div>
       </div>

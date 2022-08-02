@@ -1,13 +1,27 @@
-import * as React from 'react';
-import { Login } from './components/login';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import increment, { incrementAsync, decrement } from './actions';
+import Counter from './Counter';
+import { RootState } from './store';
 import { Register } from './components/register';
-import './styles/style.scss';
+import { Login } from './components/login';
 
-const App: React.FC = () => {
+export const App :React.FC = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state: RootState) => state.count);
+
   return (
     <div className="App">
-      <Register />
-      <Login />
+      <header className="App-header">
+        <Counter
+          value={counter}
+          onIncrement={() => dispatch(increment())}
+          onDecrement={() => dispatch(decrement())}
+          onIncrementAsync={() => dispatch(incrementAsync())}
+        />
+        <Login />
+        <Register />
+      </header>
     </div>
   );
 }

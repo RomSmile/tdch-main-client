@@ -13,15 +13,15 @@ export const Register: React.FC = () => {
           <div className="register__inputs">
             <label>
               <p>Email:</p>
-              <input type="text" />
+              <input type="text" placeholder="Введите вашу почту..." />
             </label>
             <label>
               <p>Password:</p>
-              <input type="password" />
+              <input type="password" placeholder="Придумайте пароль..."/>
             </label>
             <label>
               <p>Confirm Password</p>
-              <input type="password" />
+              <input type="password" placeholder="Повторите пароль..." />
             </label>
           </div>
           <div className="register__buttons">
