@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style/index.scss';
 
 export const Register: React.FC = () => {
+  const [ rememberMe, setRememberMe ] = useState<boolean>(false);
+
   return (
   <div className="register">
       <div className="register__container">
@@ -27,7 +29,11 @@ export const Register: React.FC = () => {
           <div className="register__buttons">
             <label className="register__checkbox">
               <label htmlFor="">
-                <input style={{ background: 'black'}} type="checkbox" />
+                {rememberMe && (<img src='/images/galochka.png' />)}
+                <input
+                  type="checkbox"
+                  onClick={() => setRememberMe(!rememberMe)}
+                />
               </label>
               <p>Запомнить меня</p>
             </label>

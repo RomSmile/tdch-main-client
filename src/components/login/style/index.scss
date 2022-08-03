@@ -62,6 +62,7 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     & button {
       background-color: #ECFC9D;
@@ -69,34 +70,37 @@
       border: none;
       font-size: 18px;
       border-radius: 10px;
-      padding: 3px 7px;
+      padding: 8px 12px;
     }
   }
 
   &__checkbox {
+    position: relative;
     display: flex;
     align-items: center;
     font-size: 20px;
     color: #fff;
 
+    * img {
+      position: absolute;
+      left: 3px;
+      top: 12px;
+    }
+
     & label {
-      width: 20px;
-      height: 20px;
-      background-color: rgba(#000000, 0);
-      border: 1px solid #fff;
+      width: 30px;
+      height: 30px;
       margin-right: 8px;
+      background:#ECFC9D;
+      border: 3px solid #000;
+      border-radius: 10px;
     }
 
     & input {
-      width: 100%;
-      height: 100%;
-      background-color: #000000;
-      accent-color: #000000;
+      width: 30px;
+      height: 30px;
       opacity: 0;
-
-      &:checked {
-        opacity: 1;
-      }
+      margin: 0;
     }
   }
 
