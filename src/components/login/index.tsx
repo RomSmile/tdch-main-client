@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import './style/index.scss';
 
 type UserLoginInfo = {
@@ -13,6 +15,8 @@ export const Login: React.FC = () => {
     password: '',
     rememberMe: false,
   })
+
+  const theme = useSelector((state: RootState) => state.theme);
 
 
   const validation = () => {
@@ -41,14 +45,14 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <div className="login">
+    <div className={`login--${theme} login`}>
       <div className="login__container">
         <div className="login__header">
-          <img src="/images/logo-light.png" alt="logo"/>
+          <img src='/images/logo-light.png' alt="logo"/>
           <div><h1>Логин</h1></div>
         </div>
         <form action="" className="login__form">
-          <div className="login__inputs">
+          <div className={`login__inputs--${theme} login__inputs`}>
             <label>
               <p>Email:</p>
               <input
@@ -82,10 +86,10 @@ export const Login: React.FC = () => {
               />
             </label>
           </div>
-          <div className="login__buttons">
-            <label className="login__checkbox">
+          <div className={`login__buttons--${theme} login__buttons`}>
+            <label className={`login__checkbox login__checkbox--${theme}`}>
               <label htmlFor="">
-                {userInfo.rememberMe && (<img src='/images/galochka.png' />)}
+                {userInfo.rememberMe && (<img src={`/images/galochka-${theme}.png`} />)}
                 <input
                   type="checkbox"
                   onClick={() => 
@@ -101,7 +105,7 @@ export const Login: React.FC = () => {
             <button>Войти</button>
           </div>
         </form>
-        <div className="login__links">
+        <div className={`login__links login__links--${theme}`}>
           <a href="">Регистрация</a>
           <a href="">О нас</a>
         </div>

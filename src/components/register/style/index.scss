@@ -1,10 +1,19 @@
 .register {
-  background-color: #BBB5FC;
   max-width: 670px;
   width: 100%;
   padding: 14px 104px 151px;
-  border: 3px solid #353535;
   border-radius: 20px;
+  color: #fff;
+
+  &--light {
+    background-color: #BBB5FC;
+    border: 3px solid #353535;
+  }
+
+  &--dark {
+    background-color: #100622;
+    border: 3px solid #71739F;
+  }
   
   &__header {
     display: flex;
@@ -49,13 +58,27 @@
     & input {
       outline: none;
       border: none;
-      background-color: #ECFC9D;
+      box-sizing: border-box;
       border-radius: 20px;
       padding: 10px 17px;
       font-size: 18px;
       width: 100%;
       margin-top: 10px;
       margin-bottom: 10px;
+    }
+
+    &--light {
+      & input {
+        box-shadow: 0px 3px 7px #000;
+        background-color: #ECFC9D;
+      }
+    }
+
+    &--dark {
+      & input {
+        background-color: #061A41;
+        box-shadow: 0px 3px 7px #fff;
+      }
     }
   }
 
@@ -65,12 +88,27 @@
     align-items: center;
 
     & button {
-      background-color: #ECFC9D;
       outline: none;
       border: none;
       font-size: 18px;
       border-radius: 10px;
       padding: 8px 12px;
+    }
+
+    &--light {
+      & button {
+        background-color: #ECFC9D;
+        box-shadow: 0px 3px 5px #000;
+        color: #000;
+      }
+    }
+
+    &--dark {
+      & button {
+        background-color: #061A41;
+        box-shadow: 0px 3px 5px #fff;
+        color: #fff;
+      }
     }
   }
 
@@ -79,7 +117,6 @@
     display: flex;
     align-items: center;
     font-size: 20px;
-    color: #fff;
 
     * img {
       position: absolute;
@@ -91,8 +128,6 @@
       width: 30px;
       height: 30px;
       margin-right: 8px;
-      background:#ECFC9D;
-      border: 3px solid #000;
       border-radius: 10px;
     }
 
@@ -101,6 +136,36 @@
       height: 30px;
       opacity: 0;
       margin: 0;
+    }
+
+    &--light {
+      color: #fff;
+  
+      * img {
+        position: absolute;
+        left: 3px;
+        top: 12px;
+      }
+  
+      & label {
+        border: 3px solid #000;
+        background:#ECFC9D;
+      }
+    }
+
+    &--dark {
+      color: #fff;
+  
+      * img {
+        position: absolute;
+        left: 3px;
+        top: 12px;
+      }
+  
+      & label {
+        border: 3px solid #7DA9FF;
+        background:#061A41;
+      }
     }
   }
 
@@ -113,11 +178,22 @@
     & a {
       display: block;
       text-decoration: none;
-      color: #fff;
-      background-color: #392E7B;
       padding: 5px 8px;
       border-radius: 10px;
       font-size: 20px;
+      color: #fff;
+    }
+
+    &--light {
+      & a {
+        background-color: #392E7B;
+      }
+    }
+
+    &--dark {
+      & a {
+        background:#061A41;
+      }
     }
   }
 }

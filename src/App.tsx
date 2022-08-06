@@ -5,6 +5,7 @@ import Counter from './Counter';
 import { RootState } from './store';
 import { Register } from './components/register';
 import { Login } from './components/login';
+import { ThemeSwitcher } from './components/ThemeSwithcer';
 
 export const App :React.FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export const App :React.FC = () => {
         />
         <Login />
         <Register />
+        <ThemeSwitcher />
       </header>
     </div>
   );
