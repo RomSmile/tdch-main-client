@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 29px;
+  box-sizing: border-box;
+
+  & img {
+    @media (max-width: 500px) {
+      width: 180px;
+    }
+  }
+}

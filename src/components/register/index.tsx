@@ -54,7 +54,6 @@ export const Register: React.FC = () => {
   <div className={`register register--${theme}`}>
       <div className="register__container">
         <div className="register__header">
-          <img src={`/images/logo-${theme}.png`} alt="logo"/>
           <div><h1>Регистрация</h1></div>
         </div>
         <form action="" className="register__form">

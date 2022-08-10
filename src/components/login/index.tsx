@@ -48,7 +48,6 @@ export const Login: React.FC = () => {
     <div className={`login--${theme} login`}>
       <div className="login__container">
         <div className="login__header">
-          <img src='/images/logo-light.png' alt="logo"/>
           <div><h1>Логин</h1></div>
         </div>
         <form action="" className="login__form">

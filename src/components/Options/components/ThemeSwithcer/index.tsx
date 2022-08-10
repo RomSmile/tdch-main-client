@@ -1,19 +1,25 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDark, setLight } from '../../actions/theme.js';
-import { RootState } from "../../store.js";
+import { setDark, setLight } from '../../../../actions/theme.js';
+import { RootState } from "../../../../store.js";
 import './styles/index.scss';
 
-export const ThemeSwitcher = () => {
+type Props = {
+  isVisible: boolean,
+}
+
+export const ThemeSwitcher = ({ isVisible }) => {
   const dispatch = useDispatch();
 
   const theme = useSelector((state: RootState) => state.theme)
 
   const handler = () => {
-    if (theme === 'light') {
-      dispatch(setDark())
-    } else {
-      dispatch(setLight())
+    if (isVisible) {
+      if (theme === 'light') {
+        dispatch(setDark())
+      } else {
+        dispatch(setLight())
+      }
     }
   }
 
