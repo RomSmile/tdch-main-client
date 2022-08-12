@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDark, setLight } from '../../actions/theme.js';
 import { RootState } from "../../store.js";
 import './styles/index.scss';
+import moon from './images/moon.svg';
+import sun from './images/sun.svg';
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
@@ -25,12 +27,12 @@ export const ThemeSwitcher = () => {
   return (
     <>
       <div className={`switcher switcher--${theme}`} onClick={() => handler}>
-        <img src="/images/moon.svg" alt="moon"/>
+        <img src={moon} alt="moon"/>
         <div
           className={`switcher__indicator switcher__indicator--${theme}`}
           style={theme === 'light' ? {} : clickedSwithcer}
         />
-        <img src="/images/sun.svg" alt="sun"/>
+        <img src={sun} alt="sun"/>
       </div>
     </>
   )
