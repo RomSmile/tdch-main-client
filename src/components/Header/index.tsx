@@ -8,7 +8,11 @@ export const Header:React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme);
   return (
     <header className="header">
-      <img src={`/images/logo-${theme}.png`} />
+      <img
+        src={`/images/logo-${theme}.png`}
+        alt="logo"
+        className="header__logo"
+      />
       <Options />
     </header>
   );

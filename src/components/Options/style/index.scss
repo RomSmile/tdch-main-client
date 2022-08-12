@@ -4,6 +4,10 @@
   &__galaxy {
     width: 73px;
     transition: all 0.6s linear;
+
+    @media (max-width: 500px) {
+      width: 50px;
+    }
   }
 
   &__menu {
@@ -12,6 +16,7 @@
     left: -100%;
     transition: opacity 0.5s linear;
     opacity: 0;
+    z-index: 2;
 
     /* &--light {
       border: 2px solid #000;

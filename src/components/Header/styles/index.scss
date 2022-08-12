@@ -6,7 +6,7 @@
   padding: 20px 29px;
   box-sizing: border-box;
 
-  & img {
+  &__logo {
     @media (max-width: 500px) {
       width: 180px;
     }

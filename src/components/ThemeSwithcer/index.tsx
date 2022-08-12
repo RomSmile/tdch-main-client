@@ -24,7 +24,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <>
-      <div className={`switcher switcher--${theme}`} onClick={handler}>
+      <div className={`switcher switcher--${theme}`} onClick={() => handler}>
         <img src="/images/moon.svg" alt="moon"/>
         <div
           className={`switcher__indicator switcher__indicator--${theme}`}

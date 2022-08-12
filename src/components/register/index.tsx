@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { Link } from 'react-router-dom';
 import './style/index.scss';
 
 type UserRegisterInfo = {
@@ -99,7 +100,7 @@ export const Register: React.FC = () => {
                 onChange={(event) => {
                   setUserInfo({
                     ...userInfo,
-                    password: event.target.value
+                    repeatPassword: event.target.value
                   })
                 }}
                 required
@@ -127,7 +128,7 @@ export const Register: React.FC = () => {
           </div>
         </form>
         <div className={`register__links register__links--${theme}`}>
-          <a href="">Есть аккаунт</a>
+          <Link to="/enter/login">Есть аккаунт</Link>
           <a href="">О нас</a>
         </div>
       </div>

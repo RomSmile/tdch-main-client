@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RootState } from '../../store';
 import './style/index.scss';
 
@@ -19,29 +20,8 @@ export const Login: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme);
 
 
-  const validation = () => {
-    const { email, password, rememberMe } = userInfo;
+  const submit = () => {
 
-    if (email.length < 2 || email.length > 50) {
-      // i'll add modal block with error
-      alert('Your email length is not valid');
-      return
-    }
-
-    if (password.length < 8 || password.length > 20) {
-      alert('Your password length is not valid');
-      return
-    }
-
-    if (password.match(/[A-Z]/g)) {
-      alert('Your password must includes one symbol in uppercase')
-      return
-    }
-
-    if (password.match(/&?!-_$#*()/g)) {
-      alert('your password must includes this symbols')
-      return
-    }
   }
 
   return (
@@ -105,7 +85,7 @@ export const Login: React.FC = () => {
           </div>
         </form>
         <div className={`login__links login__links--${theme}`}>
-          <a href="">Регистрация</a>
+          <Link to="/enter/register">Регистрация</Link>
           <a href="">О нас</a>
         </div>
       </div>
