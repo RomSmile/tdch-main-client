@@ -1,30 +1,61 @@
+@import '../../../styles/utils/utils.scss';
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba($dark, 0.3);
+
+  & img {
+    width: 100%;
+    max-width: 700px;
+    @media screen and (max-width: 650px) {
+      width: 96%;
+    }
+  }
+}
+
 .modal {
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 400px;
-  height: 200px;
+  max-width: 600px;
+  border-radius: 10px;
+  width: 100%;
+  height: 150px;
   width: 100%;
   padding: 20px 20px;
-  border-radius: 30px;
   box-sizing: border-box;
 
+  @media screen and (max-width: 650px) {
+    width: 90%;
+  }
+
   &--light {
-    background-color: #BBB5FC;
-    border: 3px solid #353535;
+    background-color: $lightBackgroundOfBlock;
+    border: 5px solid $dark;
+    color: $dark;
   }
 
   &--dark {
-    background-color: #100622;
-    border: 3px solid #71739F;
+    background-color: $darkBackgroundOfBlock;
+    border: 5px solid #71739F;
+    color: $white;
   }
 
   &__buttons {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    padding: 30px 20px;
+    padding: 25px 20px;
 
     & a {
       display: block;
@@ -33,26 +64,42 @@
       border-radius: 10px;
       font-size: 20px;
       color: #fff;
-      border: 2px solid #fff;
     }
 
     &--light {
       & a {
         background-color: #392E7B;
+
+        @include hover(background-color, #1f184b)
       }
     }
 
     &--dark {
       & a {
-        background:#061A41;
+        background: $inputColorDark;
+
+        @include hover(background-color, #0a3283)
       }
     }
   }
 
   &__text {
     display: block;
-    color: #fff;
-    font-size: 26px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    & p {
+      margin: 0;
+    }
+
+    &--light {
+      color: $dark;
+    }
+  
+    &--dark {
+      color: $white;
+    }
 
     @media screen and (max-width: 500px) {
       font-size: 22px;

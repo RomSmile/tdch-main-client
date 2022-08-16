@@ -1,8 +1,8 @@
 import { all, call } from 'redux-saga/effects';
-import { watchIncrementAsync } from './incrementAsync';
+import userRegistration from './userRegister';
 
 export default function* rootSaga() {
   yield all([
-    call(watchIncrementAsync),
+    call(userRegistration),
   ])
 }

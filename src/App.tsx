@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import increment, { incrementAsync, decrement } from './actions';
-import Counter from './Counter';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { RootState } from './store';
-import { Register } from './components/register';
+import Register from './components/register';
 import { Login } from './components/login';
 import { Routes, Route } from 'react-router-dom';
 import { Enter } from './routes/Enter';
@@ -11,8 +9,6 @@ import { Question } from './components/Question';
 import './styles/style.scss'
 
 export const App :React.FC = () => {
-  const dispatch = useDispatch();
-  const counter = useSelector((state: RootState) => state.count);
   const theme = useSelector((state: RootState) => state.theme);
 
   const body = document.querySelector('body')
@@ -25,16 +21,6 @@ export const App :React.FC = () => {
 
   return (
     <div className={`app`}>
-      {/* <header className="app-header">
-        <Counter
-          value={counter}
-          onIncrement={() => dispatch(increment())}
-          onDecrement={() => dispatch(decrement())}
-          onIncrementAsync={() => dispatch(incrementAsync())}
-        />
-        asdf
-        <ThemeSwitcher />
-      </header> */}
       <Routes>
         <Route path="/enter/*" element={<Enter />}>
           <Route index element={<Question />} />

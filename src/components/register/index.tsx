@@ -1,54 +1,90 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { submit } from '../../actions/userRegistration';
+import { bindActionCreators } from 'redux';
+import { Error } from './Error';
 import './style/index.scss';
 
+
+type Props = {
+  theme: 'light' | 'dark',
+  submit: (info: UserRegisterInfo) => void
+};
 type UserRegisterInfo = {
   email: string,
   password: string,
-  repeatPassword: string,
-  rememberMe: boolean,
-}
+  confirmPassword: string,
+};
+type RegisterError = 'login' | 'password' | 'confirmPassword' | '';
 
-export const Register: React.FC = () => {
+const mapStateToProps = ({ theme }) => ({
+  theme
+});
+const mapDispatchToProps = dispatch => bindActionCreators({
+  submit
+}, dispatch)
+
+const Register: React.FC<Props> = (props) => {
+  const { theme, submit } = props;
+  const [ registerError, setRegisterError ] = useState<RegisterError>('');
+  const [ textError, setTextError ] = useState<string>('');
   const [ userInfo, setUserInfo ] = useState<UserRegisterInfo>({
     email: '',
     password: '',
-    repeatPassword: '',
-    rememberMe: false,
-  })
+    confirmPassword: '',
+  });
 
-  const theme = useSelector((state: RootState) => state.theme)
+  const clear = () => {
+    setRegisterError('');
+    setTextError('');
+  }
 
   const validation = () => {
-    const { email, password, repeatPassword, rememberMe } = userInfo;
+    const { email, password, confirmPassword } = userInfo;
+    console.log(userInfo)
+
 
     if (email.length < 2 || email.length > 50) {
-      // i'll add modal block with error
-      alert('Your email length is not valid');
-      return
+      setTextError('Your email length is not valid');
+      setRegisterError('login');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setTextError('Your email is not valid');
+      setRegisterError('login');
+      return;
     }
 
     if (password.length < 8 || password.length > 20) {
-      alert('Your password length is not valid');
-      return
-    }
-
-    if (password.match(/[A-Z]/g)) {
-      alert('Your password must includes one symbol in uppercase')
-      return
-    }
-
-    if (password.match(/&?!-_$#*()/g)) {
-      alert('your password must includes this symbols')
-      return
-    }
-
-    if (repeatPassword === password)  {
-      alert('Your passwords are not same')
+      setTextError('Your password length is not valid');
+      setRegisterError('password');
       return;
     }
+
+    if (!password.match(/[A-Z]/g)) {
+      console.log('uppercase')
+      setTextError('Your password must includes one symbol in uppercase');
+      setRegisterError('password');
+      return;
+    }
+
+    if (!password.match(/[&?!-_$#]/g)) {
+      console.log('special')
+      setTextError('your password must includes this special symbols');
+      setRegisterError('password');
+      return;
+    }
+
+    if (confirmPassword !== password)  {
+      console.log('asdfasdf')
+      setTextError('Your passwords are not same');
+      setRegisterError('confirmPassword')
+      return;
+    }
+
+    submit(userInfo);
   }
 
   return (
@@ -57,7 +93,15 @@ export const Register: React.FC = () => {
         <div className="register__header">
           <div><h1>Регистрация</h1></div>
         </div>
-        <form action="" className="register__form">
+        <form
+          action=""
+          method="post"
+          className="register__form"
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            validation()
+          }}
+        >
           <div className={`register__inputs register__inputs--${theme}`}>
             <label>
               <p>Email:</p>
@@ -71,9 +115,11 @@ export const Register: React.FC = () => {
                     email: event.target.value
                   })
                 }}
+                style={registerError === 'login' ? { border: '1px solid red' } : {}}
                 value={userInfo.email}
                 required
               />
+              {registerError === 'login' && (<Error textError={textError} />)}
             </label>
             <label>
               <p>Password:</p>
@@ -87,9 +133,11 @@ export const Register: React.FC = () => {
                     password: event.target.value
                   })
                 }}
+                style={registerError === 'password' ? { border: '1px solid red' } : {}}
                 required
                 value={userInfo.password}
               />
+              {registerError === 'password' ? (<Error textError={textError} />) : ''}
             </label>
             <label>
               <p>Confirm Password</p>
@@ -100,38 +148,27 @@ export const Register: React.FC = () => {
                 onChange={(event) => {
                   setUserInfo({
                     ...userInfo,
-                    repeatPassword: event.target.value
+                    confirmPassword: event.target.value
                   })
                 }}
+                style={registerError === 'confirmPassword' ? { border: '1px solid red' } : {}}
                 required
-                value={userInfo.repeatPassword}
+                value={userInfo.confirmPassword}
               />
+              {registerError === 'confirmPassword' && (<Error textError={textError} />)}
             </label>
           </div>
           <div className={`register__buttons register__buttons--${theme}`}>
-            <label className={`register__checkbox register__checkbox--${theme}`}>
-            <label htmlFor="">
-                {userInfo.rememberMe && (<img src={`/images/galochka-${theme}.png`} />)}
-                <input
-                  type="checkbox"
-                  onClick={() => 
-                    setUserInfo({
-                      ...userInfo,
-                      rememberMe: !userInfo.rememberMe
-                    })
-                  }
-                />
-              </label>
-              <p>Запомнить меня</p>
-            </label>
-            <button>Войти</button>
+            <button onClick={clear}>Войти</button>
           </div>
         </form>
         <div className={`register__links register__links--${theme}`}>
           <Link to="/enter/login">Есть аккаунт</Link>
-          <a href="">О нас</a>
+          <a href="https:google.com">О нас</a>
         </div>
       </div>
     </div>
   )
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

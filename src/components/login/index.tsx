@@ -19,11 +19,6 @@ export const Login: React.FC = () => {
 
   const theme = useSelector((state: RootState) => state.theme);
 
-
-  const submit = () => {
-
-  }
-
   return (
     <div className={`login--${theme} login`}>
       <div className="login__container">
@@ -68,7 +63,7 @@ export const Login: React.FC = () => {
           <div className={`login__buttons--${theme} login__buttons`}>
             <label className={`login__checkbox login__checkbox--${theme}`}>
               <label htmlFor="">
-                {userInfo.rememberMe && (<img src={`/images/galochka-${theme}.png`} />)}
+                {userInfo.rememberMe && (<img src={`/images/galochka-${theme}.png`} alt=""/>)}
                 <input
                   type="checkbox"
                   onClick={() => 
@@ -86,7 +81,7 @@ export const Login: React.FC = () => {
         </form>
         <div className={`login__links login__links--${theme}`}>
           <Link to="/enter/register">Регистрация</Link>
-          <a href="">О нас</a>
+          <a href="https://google.com">О нас</a>
         </div>
       </div>
     </div>
